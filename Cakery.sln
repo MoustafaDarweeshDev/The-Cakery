@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cakery", "Cakery\Cakery.csproj", "{AD91F0E5-B7DD-401F-A8DD-881663C21F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{BEA87429-90FE-4849-AA42-5811F1D393CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{E9505A19-E099-41A3-9B21-101CA895BB42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD91F0E5-B7DD-401F-A8DD-881663C21F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD91F0E5-B7DD-401F-A8DD-881663C21F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD91F0E5-B7DD-401F-A8DD-881663C21F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD91F0E5-B7DD-401F-A8DD-881663C21F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA87429-90FE-4849-AA42-5811F1D393CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA87429-90FE-4849-AA42-5811F1D393CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA87429-90FE-4849-AA42-5811F1D393CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA87429-90FE-4849-AA42-5811F1D393CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9505A19-E099-41A3-9B21-101CA895BB42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9505A19-E099-41A3-9B21-101CA895BB42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9505A19-E099-41A3-9B21-101CA895BB42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9505A19-E099-41A3-9B21-101CA895BB42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31221DB9-C228-49A3-AEE6-111848700446}
+	EndGlobalSection
+EndGlobal
