@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,25 +11,24 @@ namespace The_Cakery.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext db;
+        private readonly IProductRepository repo;
 
-        public ProductsController(StoreContext db)
+        public ProductsController(IProductRepository repo)
         {
-            this.db = db;
+            this.repo = repo;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var products = await db.Products.ToListAsync();
+            var products = await repo.GetProductsAsync();
             return Ok(products);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await db.Products.FindAsync(id);
-            return Ok(product);
+            return await repo.GetProductByIdAsync(id);
         }
     }
 }
