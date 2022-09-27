@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tWd1CZumkt1xfu0l+nFbs3Y95auxXJ1C2l8qjEk4yJBvTo08K753a4nQKku5s3xr3fLbuHOwCxs5g0uWVh285A==",
+  "dgSpecHash": "b597FoAyy/U76491p8tiwwFy2+dfpz7TMZz6Ek9LCGHqj9haPs2D99S1Y/156Dpqbnv0e8rOcghk1koRKW153Q==",
   "success": true,
   "projectFilePath": "D:\\Projects\\The Cakery\\The-Cakery\\The-Cakery\\The-Cakery.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.9\\microsoft.entityframeworkcore.6.0.9.nupkg.sha512",
