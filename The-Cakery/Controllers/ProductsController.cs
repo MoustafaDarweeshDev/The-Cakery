@@ -7,12 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using The_Cakery.DTO;
+using The_Cakery.Errors;
 
 namespace The_Cakery.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseController
     {
         private readonly IGenericRepository<Product> productRepo;
         private readonly IGenericRepository<ProductBrand> brandRepo;
@@ -41,10 +40,18 @@ namespace The_Cakery.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDTO>> GetProduct(int id)
         {
             var spec = new ProductWithTypesAndBrandsSpecification(id);
             var product =  await productRepo.GetEntityWithSpec(spec);
+
+            if(product == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
             return mapper.Map<Product , ProductToReturnDTO>(product);
         }
 

@@ -1,19 +1,40 @@
 using Core.Interfaces;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using The_Cakery.Errors;
+using The_Cakery.Extentions;
 using The_Cakery.Helpers;
+using The_Cakery.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddApplicationServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = actionContent =>
+    {
+        var errors = actionContent.ModelState
+        .Where(e => e.Value.Errors.Count() > 0)
+        .SelectMany(x => x.Value.Errors)
+        .Select(x => x.ErrorMessage)
+        .ToArray();
+
+        var errorResponse = new ApiValidationErrorResponse()
+        {
+            Errors = errors
+        };
+
+        return new BadRequestObjectResult(errorResponse);
+    };
+});
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocumentation();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
-builder.Services.AddScoped<IProductRepository , ProductRepository>();
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddDbContext<StoreContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")) );
 
 
@@ -41,11 +62,12 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseMiddleware<ExeptionMiddleware>();
+
+app.UseSwaggerDocumentation();
+
+app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
 
