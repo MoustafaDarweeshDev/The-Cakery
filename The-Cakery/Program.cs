@@ -7,36 +7,26 @@ using The_Cakery.Extentions;
 using The_Cakery.Helpers;
 using The_Cakery.Middleware;
 
+var AllowCors = "CorsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.Configure<ApiBehaviorOptions>(options =>
-{
-    options.InvalidModelStateResponseFactory = actionContent =>
-    {
-        var errors = actionContent.ModelState
-        .Where(e => e.Value.Errors.Count() > 0)
-        .SelectMany(x => x.Value.Errors)
-        .Select(x => x.ErrorMessage)
-        .ToArray();
 
-        var errorResponse = new ApiValidationErrorResponse()
-        {
-            Errors = errors
-        };
-
-        return new BadRequestObjectResult(errorResponse);
-    };
-});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddDbContext<StoreContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")) );
-
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy(AllowCors, builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 
 
@@ -72,6 +62,8 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
+app.UseCors(AllowCors);
 
 app.UseAuthorization();
 

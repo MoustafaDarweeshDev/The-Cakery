@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using The_Cakery.DTO;
 using The_Cakery.Errors;
+using The_Cakery.Helpers;
 
 namespace The_Cakery.Controllers
 {
@@ -30,13 +31,17 @@ namespace The_Cakery.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDTO>>> GetProducts()
+        public async Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProducts([FromQuery]ProductSpecParams productParams)
         {
-            var spec = new ProductWithTypesAndBrandsSpecification();
-
+            var spec = new ProductWithTypesAndBrandsSpecification(productParams);
+            var countSpec = new ProductWithFilterForCountSpecification(productParams);
+            var total = await  productRepo.CountAsync(countSpec);
             var products = await productRepo.ListAll(spec);
+            var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDTO>>(products);
 
-            return Ok(mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDTO>>(products));
+
+            return Ok(new Pagination<ProductToReturnDTO>(productParams.PageIndex,
+                productParams.PageSize,total,data ));
         }
 
         [HttpGet("{id}")]
