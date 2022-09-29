@@ -1,0 +1,12 @@
+
+.cart-no{
+  position: absolute;
+  border-radius: 50%;
+  min-width: 25px;
+  min-height: 25px;
+  background-color: pink;
+  color: black;
+  text-align: center;
+  top: -15px;
+  left: 15px;
+}
