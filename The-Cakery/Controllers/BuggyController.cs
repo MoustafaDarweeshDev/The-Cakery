@@ -32,6 +32,7 @@ namespace The_Cakery.Controllers
             return Ok();
         }
 
+        
         [HttpGet("servererror")]
         public ActionResult GetServerError()
         {
@@ -41,7 +42,6 @@ namespace The_Cakery.Controllers
 
             return Ok();
         }
-
 
         [HttpGet("badrequest")]
         public IActionResult GetBadRequest()

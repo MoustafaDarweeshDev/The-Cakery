@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h4>Refreshing the pahe will make the error dissapear</h4>
+  <ng-container>
+    <h5 class="text-danger">{{ errors.message }}</h5>
+    <p>
+      if you seeing this then angular propbably not responsable for this error
+    </p>
+    <ol>
+      <li>open chrome dev tools</li>
+      <li>inspect the network tab</li>
+      <li>check failing requests</li>
+      <li>examin the URL - and try it on postman</li>
+      <li>if you got same error then the error is not with angular</li>
+    </ol>
+    <code class="bg-light text-danger">
+      {{ errors.details }}
+    </code>
+  </ng-container>
+</div>

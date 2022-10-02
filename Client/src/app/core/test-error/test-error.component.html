@@ -1,0 +1,11 @@
+<div class=" container mt-5 col-12">
+  <button class="btn btn-outline-danger mx-2" (click)="get404Error()" >404 Error</button>
+<button class="btn btn-outline-danger mx-2" (click)="getNotFoundError()" >Not Found Error</button>
+<button class="btn btn-outline-danger mx-2" (click)="get400Error()" > 400 Error</button>
+<button class="btn btn-outline-danger mx-2" (click)="get400ValidationError()" >400 ValidationError</button>
+<div class="row mt-5" *ngIf="validationErrors">
+  <ul class="text-danger">
+    <li *ngFor="let err of validationErrors"> {{err}} </li>
+  </ul>
+</div>
+</div>

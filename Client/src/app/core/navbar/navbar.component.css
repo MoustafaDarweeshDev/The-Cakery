@@ -10,3 +10,10 @@
   top: -15px;
   left: 15px;
 }
+a{
+  text-decoration: none;
+  color: #343a40;
+}
+a.active{
+  color: pink;
+}
