@@ -8,6 +8,8 @@ import { ServerErrorComponent } from './server-error/server-error.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import {NgxSpinnerModule} from 'ngx-spinner'
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates:true
-    })
+    }),
+    NgxSpinnerModule
   ],
   exports:[
     NavbarComponent

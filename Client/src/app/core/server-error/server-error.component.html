@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <h4>Refreshing the pahe will make the error dissapear</h4>
-  <ng-container>
+  <ng-container *ngIf="errors">
     <h5 class="text-danger">{{ errors.message }}</h5>
     <p>
       if you seeing this then angular propbably not responsable for this error

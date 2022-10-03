@@ -66,3 +66,8 @@ D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\Core.pdb
 D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\AutoMapper.dll
 D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\The-Cakery.staticwebassets.runtime.json
+D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\StackExchange.Redis.dll
+D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\System.Diagnostics.PerformanceCounter.dll
+D:\Projects\The Cakery\The-Cakery\The-Cakery\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll

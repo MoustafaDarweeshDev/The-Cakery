@@ -11,6 +11,8 @@ import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { HttpInterceptorInterceptor } from './core/Interceptors/http-interceptor.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { HttpInterceptorInterceptor } from './core/Interceptors/http-interceptor
     HttpClientModule,
     CoreModule,
     FormsModule,
-    HomeModule
+    HomeModule,
+    NgxSpinnerModule
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS ,useClass:HttpInterceptorInterceptor , multi:true}
+    {provide:HTTP_INTERCEPTORS ,useClass:HttpInterceptorInterceptor , multi:true},
+    {provide:HTTP_INTERCEPTORS ,useClass:LoadingInterceptor , multi:true},
   ],
   bootstrap: [AppComponent]
 })
