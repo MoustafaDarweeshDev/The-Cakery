@@ -1,0 +1,20 @@
+<div class="bg-light px-4 py-3 text-upeprcase font-weight-bold">
+  order summary
+</div>
+<div class="p-3">
+  <p class="font-italic mb-4">Shipping will be added depending on choices made during checkout</p>
+  <ul class="list-unstyled mb-4">
+    <li class="d-flex justify-content-between py-3 border-bttom-3">
+      <strong class="tex-muted"> Shipping and handling </strong>
+      <strong> {{ orderTotal.shipping | currency }} </strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bttom-3">
+      <strong class="tex-muted"> subTotal </strong>
+      <strong> {{ orderTotal.subTotal | currency }} </strong>
+    </li>
+    <li class="d-flex justify-content-between py-3 border-bttom-3">
+      <strong class="tex-muted"> Total </strong>
+      <strong> {{ orderTotal.total | currency }} </strong>
+    </li>
+  </ul>
+</div>

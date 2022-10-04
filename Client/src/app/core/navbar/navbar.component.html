@@ -10,9 +10,10 @@
     <a class="p-2" routerLink="/test-error">more</a>
   </nav>
   <div class="d-flex align-items-center justify-content-center">
-    <a class="position-relative">
+    <a class="position-relative" routerLink="/basket">
       <i class="fa fa-shopping-cart fa-2x mr-3 text-dark"></i>
-      <div class="cart-no">5</div>
+      <div *ngIf="basket" class="cart-no"> {{ basket.items.length }}</div>
+      <div *ngIf="!basket" class="cart-no"> 0</div>
     </a>
     <a class="btn btn-outline-primary mr-3" href="#">Register</a>
     <a class="btn btn-outline-primary mr-2" href="#">Login</a>
