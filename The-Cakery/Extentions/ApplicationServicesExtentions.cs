@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
@@ -13,7 +14,7 @@ namespace The_Cakery.Extentions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection services,IConfiguration config)
         {
-
+            services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository , BasketRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

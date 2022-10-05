@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,13 @@ namespace The_Cakery.Controllers
         public BuggyController(StoreContext context)
         {
             this.context = context;
+        }
+
+        [HttpGet("data")]
+        [Authorize]
+        public ActionResult<string> GetSecretData()
+        {
+            return "data";
         }
 
 
