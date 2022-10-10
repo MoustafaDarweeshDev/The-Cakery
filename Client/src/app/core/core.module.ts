@@ -9,6 +9,7 @@ import { ServerErrorComponent } from './server-error/server-error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner'
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {NgxSpinnerModule} from 'ngx-spinner'
     CommonModule,
     RouterModule,
     BrowserAnimationsModule,
+    SharedModule,
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates:true

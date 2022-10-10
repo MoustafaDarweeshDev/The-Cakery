@@ -21,6 +21,7 @@
     "bootstrap": "^4.6.2",
     "bootswatch": "^5.2.1",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^3.1.2",
     "ngx-bootstrap": "^9.0.0",
     "ngx-spinner": "^14.0.0",
     "ngx-toaster": "^1.0.1",
