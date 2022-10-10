@@ -15,6 +15,8 @@ namespace The_Cakery.Helpers
                 .ForMember(dto=>dto.PictureUrl , p=>p.MapFrom<ProductUrlResolver>());
 
             CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<CustomerBasketDto, CustomerBasket>();
+            CreateMap<BasketItemDto,BasketItem>();
         }
     }
 }

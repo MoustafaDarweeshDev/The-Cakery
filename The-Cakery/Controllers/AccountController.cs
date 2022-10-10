@@ -93,6 +93,11 @@ namespace The_Cakery.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerdto)
         {
+            if (CheckEmailExisit(registerdto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[]
+                { "Email address already in use" } });
+            }
             var user = new AppUser
             {
                 DisplayName = registerdto.Displayname,
