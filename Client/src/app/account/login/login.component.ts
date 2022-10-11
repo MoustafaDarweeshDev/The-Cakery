@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 
 @Component({
@@ -10,7 +10,14 @@ import { AccountService } from '../account.service';
 })
 export class LoginComponent implements OnInit {
   loginForm:FormGroup;
-  constructor(private accountService:AccountService , private router:Router) { }
+  returnUrl:any
+  constructor(private accountService:AccountService ,
+              private router:Router,
+              private activatedRoute:ActivatedRoute) {
+
+    this.returnUrl = this.activatedRoute.snapshot.queryParams?.['returnUrl'] || '/shop'
+
+   }
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -18,18 +25,21 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(){
     this.loginForm = new FormGroup({
-      email:new FormControl('' , [Validators.required , Validators.pattern('')]),
-      password:new FormControl('' , Validators.required),
+      email:new FormControl('' , [Validators.required , Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
+      password:new FormControl('' , [Validators.required , Validators.minLength(3)]),
     })
   }
 
   onSubmit(){
     this.accountService.login(this.loginForm.value).subscribe(res=>{
 
+      this.router.navigateByUrl(this.returnUrl)
+
     },err=>{
       console.log(err);
 
     })
-    this.router.navigate(['/shop'])
+
+
   }
 }

@@ -6,25 +6,56 @@
       </div>
 
       <div class="form-label-group"  >
-        <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"  autofocus="">
+        <input
+        formControlName="email"
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        autofocus=""
+        [ngClass]="(loginForm.get('email')?.valid) ? 'is-valid' : (!loginForm.get('email')?.valid && loginForm.get('email')?.touched) ?'is-invalid' :  null "
+      >
         <label for="inputEmail">Email address</label>
+        <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+          <span
+            class="text-danger"
+            *ngIf="loginForm.get('email')?.getError('required')"
+          >
+            Email is required
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="loginForm.get('email')?.getError('pattern')"
+          >
+            Invalid Email
+          </span>
+        </div>
       </div>
 
       <div class="form-label-group">
-        <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
+        <input
+        [ngClass]="(loginForm.get('password')?.valid) ? 'is-valid' : (!loginForm.get('password')?.valid && loginForm.get('password')?.touched) ?'is-invalid' :  null "
+        formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
         <label for="inputPassword">Password</label>
+        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+          <span
+            class="text-danger"
+            *ngIf="loginForm.get('password')?.getError('required')"
+          >
+            password is required
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="loginForm.get('password')?.getError('minlength')"
+          >
+            too short
+          </span>
+        </div>
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
     </form>
-
-  </div>
-  <div class="col-4">
-    <p> ALL Form :: {{loginForm.status}}</p>
-    <p> Email :: {{loginForm.get('email')?.status}}</p>
-    <p> Email :: {{loginForm.get('email')?.dirty}}</p>
-    <p> Email :: {{loginForm.get('email')?.touched}}</p>
 
   </div>
 </div>

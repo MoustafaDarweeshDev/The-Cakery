@@ -26,11 +26,11 @@ export class AccountService {
 
 
   loadCurrentUser2(token:string){
-    let header = new HttpHeaders();
-    header=header.set('Authorization',`Bearer ${token}` )
-    console.log(header);
+    let headers = new HttpHeaders();
+    headers=headers.set('Authorization',`Bearer ${token}` )
 
-    return    this.http.get<IUser>(this.baseUrl+'account'+ {header}).pipe(
+    // {headers: new HttpHeaders().set('Authorization', 'my-auth-token')}
+    return    this.http.get<IUser>(this.baseUrl+'account', {headers}).pipe(
       map((user:IUser)=>{
         if(user){
           localStorage.setItem('token' , user.token)
@@ -39,15 +39,6 @@ export class AccountService {
       })
     )
   }
-
-  // saveUserData(){
-  //   const token =localStorage.getItem('token');
-  //   if(token){
-  //     let encodedToken = JSON.stringify(token);
-  //     let decodedToken:any = jwtDecode(encodedToken)
-  //     this.user.next(decodedToken)
-  //   }
-  // }
 
   login(value:any){
     return this.http.post<IUser>( this.baseUrl+'Account/Login' , value).pipe(
@@ -64,6 +55,8 @@ export class AccountService {
       map((user:IUser)=>{
         if(user){
           localStorage.setItem('token' , user.token)
+           this.user.next(user)
+
         }
       })
     )
@@ -79,6 +72,6 @@ export class AccountService {
   }
 
   checkEmailExist(email:string){
-    this.http.get(this.baseUrl+'Account/emailexisit?email='+email)
+    return this.http.get(this.baseUrl+'Account/emailexisit?email='+email)
   }
 }
