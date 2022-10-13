@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IAddress } from '../shared/Modules/Address';
 import { IUser } from '../shared/Modules/User';
 
 @Injectable({
@@ -73,5 +74,13 @@ export class AccountService {
 
   checkEmailExist(email:string){
     return this.http.get(this.baseUrl+'Account/emailexisit?email='+email)
+  }
+
+  getUserAddress(){
+    return this.http.get<IAddress>(this.baseUrl+'Account/address')
+  }
+
+  updateUserAddress(address:IAddress){
+    return this.http.put(this.baseUrl + "Account/address", address)
   }
 }

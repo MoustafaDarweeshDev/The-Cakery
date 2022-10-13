@@ -7,20 +7,27 @@ import {CarouselModule} from 'ngx-bootstrap/carousel';
 import { OrderTotalComponent } from './Components/order-total/order-total.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{CdkStepperModule} from '@angular/cdk/stepper';
+import { StepperComponent } from './Components/stepper/stepper.component';
+import { BasketSummaryComponent } from './Components/basket-summary/basket-summary.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     PagingHeaderComponent,
     PagerComponent,
-    OrderTotalComponent
+    OrderTotalComponent,
+    StepperComponent,
+    BasketSummaryComponent
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkStepperModule,
+    RouterModule
   ],
   exports:[
     PaginationModule,
@@ -30,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OrderTotalComponent,
     ReactiveFormsModule,
     BsDropdownModule,
-
+    CdkStepperModule,
+    StepperComponent,
+    BasketSummaryComponent
 
   ]
 })
