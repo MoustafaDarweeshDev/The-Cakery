@@ -1,0 +1,90 @@
+<div class="container">
+  <ng-container *ngIf="order">
+    <div class="row mt-5">
+      <div class="col-8 table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="border-0 bg-light">
+                <div class="p-2 px-3 text-uppercase">product</div>
+              </th>
+              <th class="border-0 bg-light">
+                <div class="py-2 text-uppercase text-center">Price</div>
+              </th>
+              <th class="border-0 bg-light">
+                <div class="py-2 text-uppercase text-center">quantity</div>
+              </th>
+              <th class="border-0 bg-light">
+                <div class="py-2 text-uppercase text-center">total</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of order.orderItems">
+              <th>
+                <div class="p-2">
+                  <img
+                    [src]="item.pictureUrl"
+                    alt=""
+                    class="img-fluid"
+                    style="max-height: 50px"
+                  />
+                  <div class="ml-3 d-inline-block align-middle">
+                    <h5 class="mb-0">
+                      <a
+                        class="decoration-none"
+                        routerLink="/shop/{{ item.productId }}"
+                      >
+                        {{ item.productName }}
+                      </a>
+                    </h5>
+                  </div>
+                </div>
+              </th>
+              <td class="align-middle">
+                <strong>{{ item.price | currency }}</strong>
+              </td>
+              <td class="align-middle">
+                <span style="font-size: 1.5em" class="d-flex align-items-center"
+                  ><strong class="w-100">{{ item.quantity }}</strong></span
+                >
+              </td>
+              <td class="align-middle">
+                <strong>{{ item.price * item.quantity | currency }}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+        <div class="bg-light px-4 py-3 text-upeprcase font-weight-bold">
+          order summary
+        </div>
+        <div class="p-3">
+          <p class="font-italic mb-4">
+            Delivery Method {{ order.deliveryMethod }}
+          </p>
+          <ul class="list-unstyled mb-4">
+            <li class="d-flex justify-content-between py-3 border-bttom-3">
+              <strong class="tex-muted"> Shipping and handling </strong>
+              <strong> {{ order.shippingPrice | currency }} </strong>
+            </li>
+            <li class="d-flex justify-content-between py-3 border-bttom-3">
+              <strong class="tex-muted"> subTotal </strong>
+              <strong> {{ order.subtotal | currency }} </strong>
+            </li>
+            <li class="d-flex justify-content-between py-3 border-bttom-3">
+              <strong class="tex-muted"> Total </strong>
+              <strong> {{ order.total | currency }} </strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="d-flex flex-row-reverse">
+    <button class="btn btn-primary align-self-end" routerLink="/orders">
+      Back to Orders
+    </button>
+  </div>
+</div>
