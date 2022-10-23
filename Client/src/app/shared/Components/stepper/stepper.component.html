@@ -4,6 +4,7 @@
 
       <button
         (click)="onClick(i)"
+        [disabled]="true"
         [class.active]="selectedIndex == i"
         class="nav-link py-3 text-uppercase font-weight-bold btn-block"
       >

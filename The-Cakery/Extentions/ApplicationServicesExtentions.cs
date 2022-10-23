@@ -15,10 +15,11 @@ namespace The_Cakery.Extentions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services,IConfiguration config)
         {
             services.AddScoped<ITokenService,TokenService>();
+            services.AddScoped<IOrderService,OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository , BasketRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IOrderService,OrderService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IConnectionMultiplexer>(c =>
             {

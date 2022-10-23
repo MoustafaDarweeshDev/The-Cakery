@@ -14,11 +14,13 @@ namespace Infrastructure.Services
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IBasketRepository basketRepo;
+        private readonly IPaymentService paymentService;
 
-        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo)
+        public OrderService(IUnitOfWork unitOfWork, IBasketRepository basketRepo, IPaymentService paymentService)
         {
             this.unitOfWork = unitOfWork;
             this.basketRepo = basketRepo;
+            this.paymentService = paymentService;
         }
         public async Task<Order> CreateOrderAsync(string buyerEmail, int deliveryMethodId,
             string basketId, Address shippingAddress)
@@ -38,8 +40,17 @@ namespace Infrastructure.Services
             var delivryMethod = await unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
             //calc subtotal
             var subTotal = items.Sum(i=>i.Price * i.Quantity);
+            //check if order already exisits
+            var spec =new OrderByPaymentIntentIdSpecification(basket.PaymentIntentId);
+            var existingOrder = await unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+
+            if (existingOrder != null)
+            {
+                unitOfWork.Repository<Order>().Delete(existingOrder);
+                await paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+            }
             //create order
-            var order = new Order(items , buyerEmail , shippingAddress , delivryMethod , subTotal);
+            var order = new Order(items , buyerEmail , shippingAddress , delivryMethod , subTotal,basket.PaymentIntentId);
             unitOfWork.Repository<Order>().Add(order);
             // To DO : save to db
             var resault = await unitOfWork.Complete();
